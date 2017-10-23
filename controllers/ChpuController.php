@@ -10,15 +10,29 @@ class ChpuController
     {
         if (isset($_POST['submit'])) {
             $text = '';
+            $maxCount = 0;
             $sum = 0;
+            $arr_item = array();
             $for = Chpu::getParameter($_POST['for']);
             foreach ($for as $item) {
-                $text .= $_POST[$item['code']] ? trim($item['code']) . trim($_POST[$item['code']]) . ' ' : '';
+                $arr_item[$item['code']] = explode(';', trim($_POST[$item['code']]));
+                $maxCount < count($arr_item[$item['code']]) ? $maxCount = count($arr_item[$item['code']]) : $maxCount = $maxCount;
+//                foreach ($arr_item as $parameter) {
+//                    $text .= $_POST[$item['code']] ? trim($item['code']) . $parameter . ' ' : '';
+//                }
                 $sum = $sum + $_POST[$item['code']];
             }
-            if ($sum) {
+            if ($sum) :
+                for ($i = 0; $i < $maxCount; $i++) :
+                    foreach ($for as $item) :
+                        $text .= substr($item['code'], 0, -1) . $i;
+                        $text .= isset($arr_item[$item['code']][$i]) ? $arr_item[$item['code']][$i] : '';
+                        $text .= ' ';
+                    endforeach;
+                endfor;
+
                 Chpu::setSave($_POST['details'], $_POST['for'], $text);
-            }
+            endif;
         }
 
         if (isset($_POST['clear'])) {

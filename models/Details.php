@@ -2,15 +2,13 @@
 
 include_once ROOT . '/components/Db.php';
 
-class ChpuFor
+class Details
 {
-    const STATUS_FOR_SERIAL = '1';
-
-    private static function findModel($id){
+    private static function findById($id){
         $db = Db::getConnection();
         $id = intval($id);
 
-        $sql = "SELECT  *  FROM  `chpu_for`  WHERE id = :id";
+        $sql = "SELECT  *  FROM  `details`  WHERE id = :id";
 
         $result = $db->prepare($sql);
         $result->bindParam(':id', $id);
@@ -20,12 +18,9 @@ class ChpuFor
         return $model;
     }
 
-    public static function getCode($id){
-        $model = self::findModel($id);
-        return $model['code'];
-    }
     public static function getName($id){
-        $model = self::findModel($id);
+        $model = self::findById($id);
         return $model['name'];
     }
+
 }

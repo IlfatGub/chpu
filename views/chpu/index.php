@@ -3,19 +3,19 @@ include ROOT . '/views/laouyts/header.php';
 include_once ROOT.'/models/Chpu.php';
 include_once ROOT.'/models/ChpuFor.php';
 ?>
-    <div class="col-lg-8 col-lg-offset-2 text-center" style="margin-bottom: 30px">
-        <div class="btn-group btn-group-lg">
+    <div class="row col-lg-12">
+        <div class=""> </div>
+        <div class="col-lg-3">
             <?php foreach ($details as $item) : ?>
-                <button type="button" data-id="<?= $item['id']; ?>" id="details<?= $item['id']; ?>"
-                        class="btn btn-primary  for_list"><?= $item['name'] ?></button>
+                <button type="button"
+                        data-id="<?= $item['id']; ?>"
+                        id="details<?= $item['id']; ?>"
+                        class="btn btn-primary btn-block for_list"><?= $item['name'] ?>
+                </button>
             <?php endforeach; ?>
         </div>
-
-    </div>
-
-    <div class="row col-lg-12">
-        <div class="col-lg-5 for-content"></div>
-        <div class="col-lg-7 parameter-content"></div>
+        <div class="col-lg-3 for-content"></div>
+        <div class="col-lg-6 parameter-content"></div>
     </div>
 
 <?php if ($save) : ?>
@@ -55,8 +55,3 @@ include ROOT . '/views/laouyts/footer.php'
 ?>
 
 
-
-Агапов А
-Исхакова Р
-Кузьмина Е
-Валиуллин А

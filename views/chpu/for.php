@@ -1,8 +1,10 @@
 
-
+<?php
+include_once ROOT.'/models/Details.php'
+?>
 
     <a href="#" class="list-group-item active">
-        Циклы
+        Циклы(<?= Details::getName($detailsId)?>)
     </a>
     <?php foreach ($operations as $item) : ?>
         <a href="#"  data-id="<?= $detailsId.';'.$item['id']; ?>" class="list-group-item parameter_list"><?= $item['name'] ?></a>
