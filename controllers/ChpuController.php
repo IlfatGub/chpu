@@ -20,7 +20,7 @@ class ChpuController
 //                foreach ($arr_item as $parameter) {
 //                    $text .= $_POST[$item['code']] ? trim($item['code']) . $parameter . ' ' : '';
 //                }
-                $sum = $sum + $_POST[$item['code']];
+                $sum = $sum + isset($_POST[$item['code']]) ? $_POST[$item['code']] : 0 ;
             }
             if ($sum) :
                 for ($i = 0; $i < $maxCount; $i++) :
