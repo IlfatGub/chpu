@@ -42,7 +42,7 @@ class Chpu
     {
         $db = Db::getConnection();
 
-        $result = $db->query('SELECT *  FROM  `details` ORDER BY id');
+        $result = $db->query('SELECT *  FROM  `Details` ORDER BY id');
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         $i = 0;
@@ -119,7 +119,7 @@ class Chpu
         $db = Db::getConnection();
         $id = intval($id);
 
-        $sql = "SELECT  name  FROM  `details`  WHERE id = :id";
+        $sql = "SELECT  name  FROM  `Details`  WHERE id = :id";
 
         $result = $db->prepare($sql);
         $result->bindParam(':id', $id);
