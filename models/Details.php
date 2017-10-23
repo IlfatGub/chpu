@@ -8,7 +8,7 @@ class Details
         $db = Db::getConnection();
         $id = intval($id);
 
-        $sql = "SELECT  *  FROM  `details`  WHERE id = :id";
+        $sql = "SELECT  *  FROM  `Details`  WHERE id = :id";
 
         $result = $db->prepare($sql);
         $result->bindParam(':id', $id);
