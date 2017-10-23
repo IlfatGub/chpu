@@ -28,4 +28,8 @@ class ChpuFor
         $model = self::findModel($id);
         return $model['name'];
     }
+    public static function getType($id){
+        $model = self::findModel($id);
+        return $model['type'];
+    }
 }

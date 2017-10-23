@@ -17,20 +17,23 @@ class ChpuController
             foreach ($for as $item) {
                 $arr_item[$item['code']] = explode(';', trim($_POST[$item['code']]));
                 $maxCount < count($arr_item[$item['code']]) ? $maxCount = count($arr_item[$item['code']]) : $maxCount = $maxCount;
-//                foreach ($arr_item as $parameter) {
-//                    $text .= $_POST[$item['code']] ? trim($item['code']) . $parameter . ' ' : '';
-//                }
-                $sum = $sum + isset($_POST[$item['code']]) ? $_POST[$item['code']] : 0 ;
+                if (isset($_POST[$item['code']])) {
+                    $sum = $sum + intval($_POST[$item['code']]);
+                }
             }
             if ($sum) :
-                for ($i = 0; $i < $maxCount; $i++) :
-                    foreach ($for as $item) :
-                        $text .= substr($item['code'], 0, -1) . $i;
-                        $text .= isset($arr_item[$item['code']][$i]) ? $arr_item[$item['code']][$i] : '';
-                        $text .= ' ';
-                    endforeach;
-                endfor;
-
+                    for ($i = 0; $i < $maxCount; $i++) :
+                        foreach ($for as $item) :
+                            if (!empty($arr_item[$item['code']][$i])) {
+                                if ( !empty(ChpuFor::getType($_POST['for'])) ) :
+                                    $text .= '<strong>'.substr($item['code'], 0, -1) . $i.'</strong>';
+                                    $text .= trim($arr_item[$item['code']][$i]) . ' ';
+                                else:
+                                    $text .= '<strong>'.trim($item['code']).'</strong>'. trim($arr_item[$item['code']][$i]) . ' ';
+                                endif;
+                            }
+                        endforeach;
+                    endfor;
                 Chpu::setSave($_POST['details'], $_POST['for'], $text);
             endif;
         }
