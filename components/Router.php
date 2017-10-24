@@ -11,8 +11,6 @@ class Router
         $this->routes = include($routesPath);
     }
 
-// Return type
-
     private function getURI()
     {
         if (!empty($_SERVER['REQUEST_URI'])) {
