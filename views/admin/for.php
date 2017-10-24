@@ -21,7 +21,7 @@ include_once ROOT . '/models/ChpuFor.php';
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
                 <input type="text" name="code" class="form-control " placeholder="Код цикла">
             </div>
-            <input type="submit" name="add" class="btn-success btn col-lg-2 col-md-2 col-sm-2 col-xs-2" value="Добавить">
+            <input type="submit" name="add" class="btn-success btn col-lg-2 col-md-2 col-sm-2 col-xs-2" value="+">
         </form>
     </div>
 
