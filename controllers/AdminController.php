@@ -75,10 +75,26 @@ class AdminController
             }
         endif;
 
+        if (!empty($_POST['update'])) {
+            if (!empty($_POST['upd_name']) and !empty($_POST['upd_code']) and !empty($_POST['upd_ext'])) {
+                Parameter::updateById($_POST['upd_id'], $_POST['upd_name'], $_POST['upd_code'], $_POST['upd_ext']);
+            } else {
+                $errors[] = 'Одно из полей не заполнено';
+            }
+        }
+
         $parameter = Parameter::getListByForId($for);
 
         require_once(ROOT . '/views/admin/parameter.php');
         return true;
+    }
+
+    public static function actionAjaxParam()
+    {
+//        print_r($_GET['id']);
+//        print_r( $_GET['val']);
+//        print_r($_GET['type']);
+//        Parameter::updateById($_GET['id'], $_GET['val'], $_GET['type']);
     }
 
 }

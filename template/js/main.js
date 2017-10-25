@@ -20,5 +20,16 @@
 
             $("#for_param_"+id).hide(500);
         });
+
+        // $(".ajaxParam").change(function () {
+        //     var id = $(this).attr("data-id");
+        //     var val = $(this).val();
+        //     var type = $(this).attr("id");
+        //     alert(val + id + type);
+        //     $.get("/admin/ajaxParam?id="+id+"?val="+val+"?type="+type);
+        //     //
+        //     // $("#for_param_"+id).hide(500);
+        // });
+
     });
 

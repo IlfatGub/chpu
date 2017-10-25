@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'admin/ajaxParam?id' => 'admin/ajaxParam',
+
     'admin/index' => 'admin/index',
     'admin/delete/([0-9]+)' => 'admin/details/$1',
     'admin/parameter/([0-9]+)/delete/([0-9]+)' => 'admin/parameter/$1/$2',

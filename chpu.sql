@@ -12,7 +12,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Дамп данных таблицы chpu.chpu_for: ~6 rows (приблизительно)
-/*!40000 ALTER TABLE `chpu_for` DISABLE KEYS */;
 INSERT INTO `chpu_for` (`id`, `code`, `name`, `type`) VALUES
 	(7, 'CYCLE92\r\n', 'Отрез\r\n', NULL),
 	(8, 'CYCLE951\r\n', 'Обработка резаньем\r\n', NULL),

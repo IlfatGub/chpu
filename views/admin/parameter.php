@@ -35,18 +35,28 @@ include ROOT . '/views/admin/laouyts/header.php';
             <td></td>
         </tr>
         <?php foreach ($parameter as $item) : ?>
+            <form method="post">
             <tr>
-                <td><?= $item['code'] ?></td>
-                <td><?= $item['name'] ?></td>
-                <td><?= $item['ext'] ?></td>
+                <td><input type="text" name="upd_code" data-id="<?= $item['id'] ?>"  value="<?= $item['code'] ?>" class="input-sm form-control" /> </td>
+                <td><input type="text" name="upd_name" data-id="<?= $item['id'] ?>"  value="<?= $item['name'] ?>" class="input-sm form-control" /> </td>
+                <td><input type="text" name="upd_ext" data-id="<?= $item['id'] ?>"  value="<?= $item['ext']  ?>" class="input-sm form-control" /> </td>
                 <td>
-                    <div style="float: right;"><small><a href="/admin/parameter/<?=$for?>/delete/<?= $item['id'] ?>">Удалить</a></small></div>
+                    <div style="float: right;">
+                        <input type="submit" name="update" class="btn btn-xs btn-link" value="Обновить">
+                        <small><a href="/admin/parameter/<?=$for?>/delete/<?= $item['id'] ?>">Удалить</a></small>
+                    </div>
                 </td>
             </tr>
+                <input type="hidden" name="upd_id" value="<?= $item['id'] ?>"  />
+            </form>
         <?php endforeach; ?>
     </table>
 
 </div>
+
+<script>
+
+</script>
 
 <?php
 include ROOT . '/views/admin/laouyts/footer.php'
