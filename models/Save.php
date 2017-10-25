@@ -52,7 +52,7 @@ class Save
         unlink($fileName);
         $create_file = fopen($fileName, "w");
         foreach ($save as $item) {
-            fwrite($create_file, trim(ChpuFor::getCode($item['id_for']), PHP_EOL) . ' - ' . $item['text'] . PHP_EOL);
+            fwrite($create_file, trim(ChpuFor::getCode($item['id_for']), PHP_EOL) . ' - ' . str_replace(array('<strong>', '</strong>'), '',  $item['text']) . PHP_EOL);
         }
         fclose($create_file);
     }
