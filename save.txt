@@ -1,2 +1,6 @@
-CYCLE76 - X01 Z01 R05 F04 X12 Z12 R16 F18 X23 F29 
-CYCLE930 - X090 Z058 D100 A15 
+vytochka
+CYCLE930(0, 0, 0, 0, 0, 0, 10, 2.3)
+
+obrabotka-po-konturu
+CYCLE76(0, 30, 0, 12)
+

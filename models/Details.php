@@ -4,7 +4,7 @@ include_once ROOT . '/components/Db.php';
 
 class Details
 {
-    private static function findById($id){
+    public static function findById($id){
         $db = Db::getConnection();
         $id = intval($id);
 
@@ -18,9 +18,15 @@ class Details
         return $model;
     }
 
+
     public static function getName($id){
         $model = self::findById($id);
         return $model['name'];
+    }
+
+    public static function getImg($id){
+        $model = self::findById($id);
+        return $model['img'];
     }
 
     public static function getCount(){
@@ -44,6 +50,7 @@ class Details
         while ($rows = $result->fetch()) {
             $list[$i]['id'] = $rows['id'];
             $list[$i]['name'] = $rows['name'];
+            $list[$i]['img'] = $rows['img'];
             $i++;
         }
 
@@ -53,11 +60,12 @@ class Details
     /*
      * Добавляем деталь
      */
-    public static function setDetails($name){
+    public static function setDetails($name, $uploadfile){
         $db = Db::getConnection();
-        $sql = "INSERT INTO `Details` (name) VALUES (:name)";
+        $sql = "INSERT INTO `Details` (name, img) VALUES (:name, :img)";
         $result = $db->prepare($sql);
         $result->bindParam(':name', $name);
+        $result->bindParam(':img', $uploadfile);
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $result->execute();
     }
@@ -86,5 +94,16 @@ class Details
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
     }
+
+    public static function updateById($name, $file, $id)
+    {
+        $db = Db::getConnection();
+        $stmt = $db->prepare("UPDATE Details set name = :name, img = :img where id=:id");
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':img', $file, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
 
 }

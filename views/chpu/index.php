@@ -17,6 +17,9 @@ include_once ROOT.'/models/ChpuFor.php';
         <div class="col-lg-3 for-content"></div>
         <div class="col-lg-6 parameter-content"></div>
     </div>
+    <div class="col-lg-12 row text-center" style="margin: 15px" >
+        <img src="" alt="" class="img-responsive text-center" id="details-img">
+    </div>
 
 <?php if ($save) : ?>
     <div class="row col-lg-10 col-lg-offset-1" style="margin-top: 30px">

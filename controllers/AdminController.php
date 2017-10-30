@@ -3,6 +3,7 @@
 include_once ROOT . '/models/Details.php';
 include_once ROOT . '/models/ChpuFor.php';
 include_once ROOT . '/models/Parameter.php';
+include_once ROOT . '/models/Save.php';
 
 class AdminController
 {
@@ -16,7 +17,18 @@ class AdminController
         if (isset($_POST['add'])) :
             if (isset($_POST['name'])) :
                 if (Details::chekDetails($_POST['name']) !== true):
-                    Details::setDetails($_POST['name']);
+                    $uploaddir = 'template/uploads/'; // Relative path under webroot
+                    $filename = $_FILES['file']['name'];
+                    $ext = explode('.', $filename);
+                    $name = Save::translit($_POST['name']).'.'.array_pop($ext);
+                    $uploadfile = $uploaddir . basename($name);
+
+                    if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
+                        echo "File is valid, and was successfully uploaded.\n";
+                        Details::setDetails($_POST['name'], basename($name));
+                    } else {
+                        echo "File uploading failed.\n";
+                    }
                 else:
                     $errors[] = 'Такое наименование уже есть';
                 endif;
@@ -89,12 +101,31 @@ class AdminController
         return true;
     }
 
-    public static function actionAjaxParam()
-    {
-//        print_r($_GET['id']);
-//        print_r( $_GET['val']);
-//        print_r($_GET['type']);
-//        Parameter::updateById($_GET['id'], $_GET['val'], $_GET['type']);
+    public static function actionDetailsUpd($id){
+        if (!empty($_POST['update'])) {
+            if (!empty($_POST['upd_name']) or empty($_POST['upd_file'])) {
+                $uploaddir = 'template/uploads/'; // Relative path under webroot
+                $filename = $_FILES['upd_file']['name'];
+                $ext = explode('.', $filename);
+                $name = Save::translit($_POST['upd_name']).'.'.array_pop($ext);
+                $uploadfile = $uploaddir . basename($name);
+
+                if (move_uploaded_file($_FILES['upd_file']['tmp_name'], $uploadfile)) {
+                    echo "File is valid, and was successfully uploaded.\n";
+                } else {
+                    echo "File uploading failed.\n";
+                }
+                Details::updateById($_POST['upd_name'], $name, $id);
+            } else {
+                $errors[] = 'Одно из полей не заполнено';
+            }
+        }
+
+        $details = Details::findById($id);
+
+
+        require_once(ROOT . '/views/admin/detailsUpd.php');
+        return true;
     }
 
 }

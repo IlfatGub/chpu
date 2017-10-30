@@ -12,7 +12,7 @@
                         <?= $item['name'] . '(' . $item['ext'] . ')' ?>
                     </td>
                     <td>
-                        <input  type="text" data-id="<?=$item['ext']?>" class="form-control parameter_input" name="<?= $item['code'] ?>">
+                        <input  type="text" data-id="<?=$item['ext']?>" class="form-control parameter_input" name="<?= $item['code'] ?>" value="0">
                     </td>
                 </tr>
             </table>

@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'admin/ajaxParam?id' => 'admin/ajaxParam',
+
+    'admin/details/update/([0-9]+)' => 'admin/detailsUpd/$1',
 
     'admin/index' => 'admin/index',
     'admin/delete/([0-9]+)' => 'admin/details/$1',
@@ -11,7 +12,7 @@ return [
 
     'admin/for/([0-9]+)' => 'admin/for/$1',
     'admin/for' => 'admin/for',
-
+    'detailsImg/([0-9]+)' => 'chpu/detailsImg/$1',
     'for/([0-9]+)/parameter/([0-9]+)' => 'chpu/parameter/$1/$2',
     'for/([0-9]+)' => 'chpu/for/$1',
 

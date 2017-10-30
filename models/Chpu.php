@@ -96,25 +96,38 @@ class Chpu
         return $list;
     }
 
-    public static function setSave($detailsId, $forId, $text){
+    public static function setSave($detailsId, $forId, $text, $textFull)
+    {
         $db = Db::getConnection();
         $detailsId = intval($detailsId);
         $forId = intval($forId);
 
-        $sql = "INSERT INTO save (id_details, id_for, text) "
-            . "VALUES (:id_details, :id_for, :text)";
+        $sql = "INSERT INTO save (id_details, id_for, text, type, id_save) "
+            . "VALUES (:id_details, :id_for, :text, NULL, NULL)";
 
         $result = $db->prepare($sql);
         $result->bindParam(':id_details', $detailsId, PDO::PARAM_INT);
         $result->bindParam(':id_for', $forId, PDO::PARAM_INT);
         $result->bindParam(':text', $text, PDO::PARAM_STR);
 
+        $result->execute();
+        $lastId = $db->lastInsertId();
+
+        $sql = "INSERT INTO save (id_details, id_for, text, type, id_save) "
+            . "VALUES (:id_details, :id_for, :text, 1, :id_save)";
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':id_details', $detailsId, PDO::PARAM_INT);
+        $result->bindParam(':id_for', $forId, PDO::PARAM_INT);
+        $result->bindParam(':text', $textFull, PDO::PARAM_STR);
+        $result->bindParam(':id_save', $lastId, PDO::PARAM_INT);
+
         return $result->execute();
     }
 
 
-
-    public static function getDetailsName($id){
+    public static function getDetailsName($id)
+    {
 
         $db = Db::getConnection();
         $id = intval($id);
@@ -129,7 +142,9 @@ class Chpu
 
         return $newsItem['name'];
     }
-    public static function getForName($id){
+
+    public static function getForName($id)
+    {
         $db = Db::getConnection();
         $id = intval($id);
 
