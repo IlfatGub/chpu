@@ -27,16 +27,7 @@ include ROOT . '/views/admin/laouyts/header.php';
     <div class="row">
 
         <?php foreach ($details as $item) : ?>
-<!--            <tr style="vertical-align: middle">-->
-<!--                <td><img src="--><?//= '\template\uploads\\'.$item['img'] ?><!--" height="100px" class="img-rounded "> </td>-->
-<!--                <td>-->
-<!--                    --><?//= $item['name'] ?>
-<!--                    <div style="float: right;">-->
-<!--                            <small><a href="/admin/details/update/--><?//= $item['id'] ?><!--">Изменить /</a></small>-->
-<!--                            <small><a href="/admin/delete/--><?//= $item['id'] ?><!--">Удалить</a></small>-->
-<!--                    </div>-->
-<!--                </td>-->
-<!--            </tr>-->
+
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
                     <img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src="<?='\template\uploads\\'.$item['img'] ?>">

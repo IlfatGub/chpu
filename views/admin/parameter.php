@@ -30,7 +30,7 @@ include ROOT . '/views/admin/laouyts/header.php';
     <table class="table table-bordered table-responsive" style="background: white">
         <tr class="alert-info">
             <td style="max-width: 50px">Code</td>
-            <td>Наименование детали</td>
+            <td>Наименование параметра</td>
             <td>ед/изм</td>
             <td></td>
         </tr>
